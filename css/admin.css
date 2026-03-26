@@ -101,7 +101,107 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.form-section.hidden {
+.form-section.nav-tab {
+    background: transparent;
+    color: #94a3b8;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.nav-tab.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Submission Dashboard Styles */
+.submissions-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.submission-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #0ea5e9;
+}
+
+.submission-card.registration {
+    border-left-color: #10b981;
+}
+
+.sub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sub-type-badge {
+    font-size: 0.75rem;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.sub-header h3 {
+    margin-top: 0.5rem;
+    color: #0f172a;
+}
+
+.sub-date {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.sub-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.sub-info {
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.sub-message {
+    grid-column: span 2;
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    border: 1px dashed #e2e8f0;
+}
+
+.clear-btn {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.clear-btn:hover {
+    background: #fee2e2;
+    color: #ef4444;
+    border-color: #ef4444;
+}
+
+.hidden {
     display: none;
 }
 

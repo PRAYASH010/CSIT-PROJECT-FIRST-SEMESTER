@@ -39,7 +39,7 @@ graph TD
 
     subgraph BusinessLogic [Core Logic]
         MainJS -->|UI Injection| InjectJS[js/injection.js]
-        AdminJS -->|Data Mutation| InjectJS
+        AdminJS <-->|Data Mutation| InjectJS
         InjectJS -->|Render| CardUI[Dynamic Card Grid]
         MainJS -->|Trigger| Modals[Contextual Modals]
     end
@@ -66,7 +66,7 @@ graph TD
 - **Frontend**: HTML5, CSS3 (Custom Grid & Flexbox)
 - **Scripting**: Vanilla JavaScript (ES6+)
 - **Icons**: FontAwesome 7.0
-- **Storage**: Web Storage API (LocalStorage & SessionStorage)
+- **Storage**: Web Storage API (LocalStorage & SessionStorage). (Temporary) 
 - **Fonts**: System Interface Fonts (San Francisco/Segoe UI)
 
 ---
@@ -108,9 +108,22 @@ graph TD
 
 ---
 
-## 📄 License
+## � Project Team
 
-This project is licensed under the **MIT License**. See the `LICENSE` file for details.
+- **Nishant Adhikari** — *Project Management, Debugging & Core JS*
+- **Bishan Bartaula** — *Admin Panels & Administrative JS Logic*
+- **Pasang Lama** — *Card UI, Display Layout & Dynamic Injection JS*
+- **Prayash Adhikari** — *Registration & Application Modals*
+- **Deepak Bashnet** — *Admin Login Interface*
+- **Tilak Kunwar** — *Documentation*
+
+---
+
+## �📄 License
+
+This project is licensed under the **MIT License**.
 
 ---
 *Developed as part of the CSIT First Semester Web Development Project.*
+
+

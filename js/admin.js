@@ -9,10 +9,35 @@ const cancelBtn = document.getElementById('cancelBtn');
 const formSection = document.getElementById('formSection');
 const logoutBtn = document.getElementById('logoutBtn');
 
+// Navigation Tabs
+const viewOpps = document.getElementById('viewOpps');
+const viewSubs = document.getElementById('viewSubmissions');
+const oppSection = document.getElementById('opportunitiesSection');
+const subSection = document.getElementById('submissionsSection');
+const submissionsList = document.getElementById('submissionsList');
+const clearSubsBtn = document.getElementById('clearSubmissions');
+
+let data = [];
 const saved = localStorage.getItem('opportunities');
 if (saved) {
     data = JSON.parse(saved);
 }
+
+// Tab Switching logic
+viewOpps.addEventListener('click', () => {
+    viewOpps.classList.add('active');
+    viewSubs.classList.remove('active');
+    oppSection.classList.remove('hidden');
+    subSection.classList.add('hidden');
+});
+
+viewSubs.addEventListener('click', () => {
+    viewSubs.classList.add('active');
+    viewOpps.classList.remove('active');
+    subSection.classList.remove('hidden');
+    oppSection.classList.add('hidden');
+    renderSubmissions();
+});
 
 addBtn.addEventListener('click', () => {
     formSection.classList.toggle('hidden');
@@ -81,4 +106,48 @@ function deleteItem(id) {
     }
 }
 
+// Submissions Rendering Logic
+function renderSubmissions() {
+    const subs = JSON.parse(localStorage.getItem('submissions') || '[]');
+    
+    if (subs.length === 0) {
+        submissionsList.innerHTML = '<div class="empty-message">No responses yet</div>';
+        return;
+    }
+
+    submissionsList.innerHTML = subs.reverse().map(sub => `
+        <div class="submission-card ${sub.type.toLowerCase()}">
+            <div class="sub-header">
+                <div>
+                    <span class="sub-type-badge">${sub.type}</span>
+                    <h3>${sub.opportunity}</h3>
+                </div>
+                <span class="sub-date">${sub.date}</span>
+            </div>
+            <div class="sub-body">
+                <div class="sub-info"><strong>Name:</strong> ${sub.name}</div>
+                <div class="sub-info"><strong>Email:</strong> ${sub.email}</div>
+                ${sub.type === 'Application' ? `
+                    <div class="sub-info"><strong>Phone:</strong> ${sub.phone}</div>
+                    <div class="sub-info"><strong>Education:</strong> ${sub.education}</div>
+                    <div class="sub-message"><strong>Statement:</strong> ${sub.message}</div>
+                ` : `
+                    <div class="sub-info"><strong>Organization:</strong> ${sub.organization}</div>
+                    <div class="sub-info"><strong>Source:</strong> ${sub.source}</div>
+                `}
+            </div>
+        </div>
+    `).join('');
+}
+
+clearSubsBtn.addEventListener('click', () => {
+    if (confirm('Are you sure you want to clear ALL form submissions?')) {
+        localStorage.removeItem('submissions');
+        renderSubmissions();
+    }
+});
+
 renderItems();
+renderSubmissions();
+                                                                                                                                                                                                                            renderSubmissions();
+renderSubmissions();

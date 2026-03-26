@@ -52,6 +52,23 @@ window.addEventListener('click', (e) => {
 document.getElementById('apply-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const title = document.getElementById('apply-item-title').value;
+    const inputs = e.target.querySelectorAll('input, textarea');
+    const formData = {
+        id: Date.now(),
+        opportunity: title,
+        type: 'Application',
+        date: new Date().toLocaleString(),
+        name: inputs[1].value, // inputs[0] is hidden title
+        email: inputs[2].value,
+        phone: inputs[3].value,
+        education: inputs[4].value,
+        message: inputs[5].value
+    };
+
+    const submissions = JSON.parse(localStorage.getItem('submissions') || '[]');
+    submissions.push(formData);
+    localStorage.setItem('submissions', JSON.stringify(submissions));
+
     alert(`Application submitted successfully for: ${title}`);
     applyModal.style.display = 'none';
     e.target.reset();
@@ -60,6 +77,22 @@ document.getElementById('apply-form').addEventListener('submit', (e) => {
 document.getElementById('register-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const title = document.getElementById('register-item-title').value;
+    const inputs = e.target.querySelectorAll('input, select');
+    const formData = {
+        id: Date.now(),
+        opportunity: title,
+        type: 'Registration',
+        date: new Date().toLocaleString(),
+        name: inputs[1].value,
+        email: inputs[2].value,
+        organization: inputs[3].value,
+        source: inputs[4].value
+    };
+
+    const submissions = JSON.parse(localStorage.getItem('submissions') || '[]');
+    submissions.push(formData);
+    localStorage.setItem('submissions', JSON.stringify(submissions));
+
     alert(`Registration successful for: ${title}`);
     registerModal.style.display = 'none';
     e.target.reset();
