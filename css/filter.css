@@ -1,24 +1,61 @@
-.filter{
+.filter {
     width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto 0;
     display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    gap: 30px;
-    /* background: #333; */
-    padding: 13px 17px 13px;
+    gap: 12px;
+    padding: 0 2rem;
+    flex-wrap: wrap;
 }
 
-.filter span{
-    width: 30%;   
-    background-color: #127712;
-    border-radius: 30px;
-    padding: 5px;
+.filter span {
+    padding: 8px 20px;
+    background-color: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
     user-select: none;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
 }
-.filter span:hover{
-    scale: 1.05;
+
+.filter span:hover {
+    transform: translateY(-1px);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    box-shadow: var(--shadow-md);
 }
-.filter span:active{
-    transform: scale(1.01);
-    background-color: red;
+
+.filter span:active {
+    transform: translateY(1px);
+}
+
+/* State-driven active colors */
+.filter span.active#all {
+    background-color: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+}
+
+.filter span.active#Scholarship {
+    background-color: var(--color-scholarship);
+    color: white;
+    border-color: var(--color-scholarship);
+}
+
+.filter span.active#Internship {
+    background-color: var(--color-internship);
+    color: white;
+    border-color: var(--color-internship);
+}
+
+.filter span.active#Event {
+    background-color: var(--color-event);
+    color: white;
+    border-color: var(--color-event);
 }

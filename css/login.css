@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -17,50 +17,73 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    padding: 20px;
+    width: 100%;
 }
 
 .login-box {
-    background: white;
+    background: #ffffff;
     padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
     width: 100%;
-    max-width: 350px;
+    max-width: 380px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: loginFadeIn 0.4s ease-out;
+}
+
+@keyframes loginFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .login-box h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-    color: #141414;
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #0f172a;
     text-align: center;
+    letter-spacing: -0.5px;
 }
 
 .login-box h1 span {
-    font-size: 16px;
+    font-size: 14px;
     color: #64748b;
     display: block;
-    font-weight: normal;
+    font-weight: 600;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 #loginForm {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 30px;
+    gap: 14px;
+    margin-top: 25px;
 }
 
 #loginForm input {
-    padding: 12px;
+    padding: 12px 14px;
     border: 1px solid #e2e8f0;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 14px;
-    transition: border-color 0.3s;
+    transition: all 0.2s;
+    color: #0f172a;
+    background-color: #f8fafc;
 }
 
 #loginForm input:focus {
     outline: none;
     border-color: #0ea5e9;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15);
 }
 
 #loginForm button {
@@ -68,22 +91,33 @@ body {
     background: #0ea5e9;
     color: white;
     border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.2s;
+    margin-top: 8px;
 }
 
 #loginForm button:hover {
     background: #0284c7;
+    transform: translateY(-1px);
+}
+
+#loginForm button:active {
+    transform: translateY(1px);
 }
 
 .error {
     color: #dc2626;
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 14px;
+    font-weight: 600;
+    background-color: #fef2f2;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #fee2e2;
     display: none;
 }
 

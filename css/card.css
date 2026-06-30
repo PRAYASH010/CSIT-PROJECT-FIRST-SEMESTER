@@ -5,56 +5,178 @@
 }
 
 .card {
-    background: white;
+    background: var(--bg-card);
     border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    margin: 10px;
-    border: 2px solid transparent;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Category-specific subtle border transitions on hover */
 .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-    border-color: #0ea5e9;
+    box-shadow: var(--shadow-lg);
+}
+
+.card.scholarship:hover {
+    border-color: var(--color-scholarship);
+}
+
+.card.internship:hover {
+    border-color: var(--color-internship);
+}
+
+.card.event:hover {
+    border-color: var(--color-event);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 2px;
 }
 
 .card-type {
-    padding: 0.25rem 0.75rem;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    align-self: flex-start;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-.type-Scholarship, #Scholarship{
-    background: #1e40af;
-    color: #dbeafe;
+.type-Scholarship {
+    background: var(--color-scholarship-bg);
+    color: var(--color-scholarship);
 }
 
-.type-Internship, #Internship {
-    background: #065f46;
-    color: #dbeafe;
+.type-Internship {
+    background: var(--color-internship-bg);
+    color: var(--color-internship);
 }
 
-.type-Event, #Event {
-    background: #9f1239;
-    color: #dbeafe;
+.type-Event {
+    background: var(--color-event-bg);
+    color: var(--color-event);
+}
+
+.card-organization {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.card-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    flex-grow: 1; /* Pushes the card footer to the bottom so elements align */
+    margin-bottom: 12px;
+}
+
+.card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 12px;
+    margin-bottom: 4px;
+}
+
+.meta-item {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.meta-item span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.meta-item i {
+    color: var(--text-muted);
 }
 
 .freePayment {
-    background-color: green;
-    color: #f1f2f3;
-    border-radius: 5px;
-    padding: 4px;
+    background-color: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-weight: 600;
 }
 
 .paidPayment {
-    background-color: #d4af37;
-    color: #f1f2f3;
-    border-radius: 5px;
-    padding: 4px;
+    background-color: #fef9c3;
+    color: #854d0e;
+    border: 1px solid #fef08a;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-weight: 600;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.deadline {
+    color: #ef4444;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.apply-btn {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+}
+
+.scholarship .apply-btn {
+    background: var(--color-scholarship);
+}
+.scholarship .apply-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.internship .apply-btn {
+    background: var(--color-internship);
+}
+.internship .apply-btn:hover {
+    background: #047857;
+    transform: translateY(-1px);
+}
+
+.event .apply-btn {
+    background: var(--color-event);
+}
+.event .apply-btn:hover {
+    background: #be185d;
+    transform: translateY(-1px);
 }

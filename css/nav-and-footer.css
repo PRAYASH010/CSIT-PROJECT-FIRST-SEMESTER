@@ -1,35 +1,79 @@
 .top-bottom {
     max-width: 100vw;
-    background-color: #141414;
-    padding: 5px 9px;
+    background-color: #0f172a;
+    padding: 1rem 2rem;
     display: flex;
-    color: #aaa;
+    color: #f8fafc;
     align-items: center;
+    box-shadow: var(--shadow-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.top-bottom h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
 }
 
 .nav-buttons {
     margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 1.25rem;
 }
 
 .admin-link {
-    color: #aaa;
+    color: #94a3b8;
     text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s;
+    font-size: 1.25rem;
+    transition: color 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.02);
 }
 
 .admin-link:hover {
-    color: #0ea5e9;
+    color: var(--accent-blue);
+    border-color: rgba(14, 165, 233, 0.3);
+    background-color: rgba(14, 165, 233, 0.05);
+    transform: translateY(-1px);
 }
 
-.top-bottom button {
-    margin-left: auto;
+.top-bottom button.we-button {
+    background-color: rgba(255, 255, 255, 0.02);
+    color: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.2s;
+    margin-left: 0; /* Override the buggy margin-left: auto */
+}
+
+.top-bottom button.we-button:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+    scale: 1; /* Reset buggy scale in button.css */
 }
 
 .bottom {
     justify-content: center;
-    color: #fff;
+    color: #94a3b8;
+    background-color: #0f172a;
+    font-size: 0.9rem;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }

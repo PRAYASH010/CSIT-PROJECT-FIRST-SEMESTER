@@ -25,45 +25,47 @@ function inject(filter) {
         let action = "Apply";
         let actionSudo = "Deadline: "
         
-        if(itm.payment != "Free"){
+        let paymentDisplay = itm.payment || itm.fee || "Free";
+        if (paymentDisplay.toLowerCase() === "free") {
+            paymentClass = "freePayment";
+        } else {
             paymentClass = "paidPayment";
         }
         
-        if (itm.category == "Event") {
-            action = "Regester ";
-            actionSudo = "by: "
-            icon = "pencil"
+        if (itm.category === "Event") {
+            action = "Register";
+            actionSudo = "by: ";
+            icon = "pencil";
         }
-
-        console.log(icon)
-        console.log(itm.category)
 
         let div = document.createElement("div");
         div.innerHTML = `
-            <h3 class="card-title">${itm.title}</h3>
-            <div class="card-meta">
-                <div class="meta-item ${paymentClass}">
-                    <span>${itm.payment || itm.fee}</span>
-                </div>
-                <div class="meta-item location">
-                    
-                    <span><i class="fa-solid fa-location-arrow"></i>${itm.location}</span>
-                </div>
-                <div class="meta-item" id=>
-                    <span><i class="fa-solid fa-calendar"></i>${itm.time}</span>
-                </div>
-            </div>
             <span class="card-type type-${itm.category}">${itm.category}</span>
+            <h3 class="card-title">${itm.title}</h3>
             <span class="card-organization">${itm.organization}</span>
             <p class="card-description">${itm.description}</p>
+            <div class="card-meta">
+                <div class="meta-item ${paymentClass}">
+                    <span>${paymentDisplay}</span>
+                </div>
+                <div class="meta-item location">
+                    <span><i class="fa-solid fa-location-arrow"></i> ${itm.location}</span>
+                </div>
+                ${itm.time ? `
+                <div class="meta-item duration">
+                    <span><i class="fa-solid fa-clock"></i> ${itm.time}</span>
+                </div>
+                ` : ''}
+            </div>
             <div class="card-footer">
                 <span class="deadline">${actionSudo}${itm.deadline}</span>
-            <button class="apply-btn" data-category="${itm.category}" data-title="${itm.title.replace(/"/g, '&quot;')}">
-            <i class="fa-solid fa-${icon}"></i>
-            ${action}
-            </button>
-    `
-        div.classList.add("card")
+                <button class="apply-btn" data-category="${itm.category}" data-title="${itm.title.replace(/"/g, '&quot;')}">
+                    <i class="fa-solid fa-${icon}"></i>
+                    ${action}
+                </button>
+            </div>
+        `;
+        div.classList.add("card", itm.category.toLowerCase());
         container.appendChild(div);
     })
 }

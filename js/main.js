@@ -1,11 +1,18 @@
 let filter = document.getElementById("filter")
 let containerNode = document.querySelector(".container");
 
+// Initialize active state
+document.getElementById("all").classList.add("active");
 inject("all")
 
 filter.addEventListener("click", (e) =>{
     let trgt = e.target
     if (trgt.tagName !== 'SPAN') return;
+    
+    // Clear active class from all filters and set active on the clicked one
+    filter.querySelectorAll("span").forEach(span => span.classList.remove("active"));
+    trgt.classList.add("active");
+    
     let parm = trgt.id
     containerNode.innerHTML = '';
     inject(parm);

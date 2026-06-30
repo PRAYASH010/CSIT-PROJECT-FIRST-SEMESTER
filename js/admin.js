@@ -149,5 +149,3 @@ clearSubsBtn.addEventListener('click', () => {
 
 renderItems();
 renderSubmissions();
-                                                                                                                                                                                                                            renderSubmissions();
-renderSubmissions();
