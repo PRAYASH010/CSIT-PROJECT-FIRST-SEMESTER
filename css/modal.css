@@ -158,3 +158,66 @@
 .modal-content .we-button:active {
     transform: translateY(1px);
 }
+
+.modal-wrapper {
+    animation: backdropFade 0.25s ease-out;
+}
+
+@keyframes backdropFade {
+    from { background-color: rgba(15, 23, 42, 0); backdrop-filter: blur(0px); }
+    to { background-color: rgba(15, 23, 42, 0.4); backdrop-filter: blur(6px); }
+}
+
+.modal-content input, 
+.modal-content textarea, 
+.modal-content select, 
+.modal-content .we-button {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Interactive Input Focus Highlights */
+.modal-content input:focus, 
+.modal-content textarea:focus,
+.modal-content select:focus {
+    background-color: var(--bg-card);
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.12), 0 4px 10px rgba(14, 165, 233, 0.04);
+}
+
+/* 3. Smooth Scale & Rotate On Exit Button Toggle */
+.close-btn:active {
+    transform: rotate(90deg) scale(0.9);
+}
+
+/* 4. Elegant Textarea Resizer Styling */
+.modal-content textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* 5. Submit Button Accent Glow & Elastic Depth */
+.modal-content .we-button {
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+}
+
+.modal-content .we-button:hover {
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.35);
+}
+
+.modal-content .we-button:active {
+    transform: translateY(1px) scale(0.98) !important;
+}
+
+/* 6. Custom Elegant Scrollbar for the Textarea field inside the Modal */
+.modal-content textarea::-webkit-scrollbar {
+    width: 6px;
+}
+.modal-content textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+.modal-content textarea::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+.modal-content textarea::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}

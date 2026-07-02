@@ -59,3 +59,65 @@
     color: white;
     border-color: var(--color-event);
 }
+.filter span {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Distinct Category-Based Hover Glow Rings */
+.filter span:hover#all {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.2);
+}
+
+.filter span:hover#Scholarship {
+    border-color: var(--color-scholarship);
+    color: var(--color-scholarship);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.2); /* Adjust color if your scholarship variable varies */
+}
+
+.filter span:hover#Internship {
+    border-color: var(--color-internship);
+    color: var(--color-internship);
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+}
+
+.filter span:hover#Event {
+    border-color: var(--color-event);
+    color: var(--color-event);
+    box-shadow: 0 0 12px rgba(236, 72, 153, 0.2);
+}
+
+/* 3. Micro-Press Scaling Animation on Click */
+.filter span:active {
+    transform: scale(0.95) !important;
+}
+
+/* 4. Active State Premium Box Shadows */
+.filter span.active#all {
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.filter span.active#Scholarship {
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.filter span.active#Internship {
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
+.filter span.active#Event {
+    box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4);
+}
+
+/* 5. Mobile Layout Optimization */
+@media (max-width: 640px) {
+    .filter {
+        gap: 8px;
+        padding: 0 1rem;
+    }
+    .filter span {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+    }
+}

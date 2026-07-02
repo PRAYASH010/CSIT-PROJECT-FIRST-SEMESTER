@@ -55,52 +55,102 @@ window.addEventListener('click', (e) => {
     }
 });
 
+// UX ENHANCEMENT: Close modals gracefully when pressing the Escape key
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        applyModal.style.display = 'none';
+        registerModal.style.display = 'none';
+    }
+});
+
 // Form submissions
 document.getElementById('apply-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    const formEl = e.target;
+    const submitBtn = formEl.querySelector('button[type="submit"]');
     const title = document.getElementById('apply-item-title').value;
-    const inputs = e.target.querySelectorAll('input, textarea');
+    
+    // UX ENHANCEMENT: Switched to robust selectors so updating input structure won't break data collection
     const formData = {
         id: Date.now(),
         opportunity: title,
         type: 'Application',
         date: new Date().toLocaleString(),
-        name: inputs[1].value, // inputs[0] is hidden title
-        email: inputs[2].value,
-        phone: inputs[3].value,
-        education: inputs[4].value,
-        message: inputs[5].value
+        name: formEl.querySelector('[name="name"]')?.value || formEl.querySelectorAll('input, textarea')[1].value, 
+        email: formEl.querySelector('[name="email"]')?.value || formEl.querySelectorAll('input, textarea')[2].value,
+        phone: formEl.querySelector('[name="phone"]')?.value || formEl.querySelectorAll('input, textarea')[3].value,
+        education: formEl.querySelector('[name="education"]')?.value || formEl.querySelectorAll('input, textarea')[4].value,
+        message: formEl.querySelector('[name="message"]')?.value || formEl.querySelectorAll('input, textarea')[5].value
     };
 
     const submissions = JSON.parse(localStorage.getItem('submissions') || '[]');
     submissions.push(formData);
     localStorage.setItem('submissions', JSON.stringify(submissions));
 
-    alert(`Application submitted successfully for: ${title}`);
-    applyModal.style.display = 'none';
-    e.target.reset();
+    // UX ENHANCEMENT: Used visual button feedback instead of blocking browser popups
+    if (submitBtn) {
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = '✓ Submitted Successfully!';
+        submitBtn.style.backgroundColor = '#28a745';
+        submitBtn.style.color = '#ffffff';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            applyModal.style.display = 'none';
+            formEl.reset();
+            // Reset button
+            submitBtn.innerText = originalText;
+            submitBtn.style.backgroundColor = '';
+            submitBtn.style.color = '';
+            submitBtn.disabled = false;
+        }, 1000);
+    } else {
+        applyModal.style.display = 'none';
+        formEl.reset();
+    }
 });
 
 document.getElementById('register-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    const formEl = e.target;
+    const submitBtn = formEl.querySelector('button[type="submit"]');
     const title = document.getElementById('register-item-title').value;
-    const inputs = e.target.querySelectorAll('input, select');
+    
+    // UX ENHANCEMENT: Switched to robust selectors over static array index positioning
     const formData = {
         id: Date.now(),
         opportunity: title,
         type: 'Registration',
         date: new Date().toLocaleString(),
-        name: inputs[1].value,
-        email: inputs[2].value,
-        organization: inputs[3].value,
-        source: inputs[4].value
+        name: formEl.querySelector('[name="name"]')?.value || formEl.querySelectorAll('input, select')[1].value,
+        email: formEl.querySelector('[name="email"]')?.value || formEl.querySelectorAll('input, select')[2].value,
+        organization: formEl.querySelector('[name="organization"]')?.value || formEl.querySelectorAll('input, select')[3].value,
+        source: formEl.querySelector('[name="source"]')?.value || formEl.querySelectorAll('input, select')[4].value
     };
 
     const submissions = JSON.parse(localStorage.getItem('submissions') || '[]');
     submissions.push(formData);
     localStorage.setItem('submissions', JSON.stringify(submissions));
 
-    alert(`Registration successful for: ${title}`);
-    registerModal.style.display = 'none';
-    e.target.reset();
+    // UX ENHANCEMENT: Used visual button feedback instead of blocking browser popups
+    if (submitBtn) {
+        const originalText = submitBtn.innerText;
+        submitBtn.innerText = '✓ Registered!';
+        submitBtn.style.backgroundColor = '#28a745';
+        submitBtn.style.color = '#ffffff';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            registerModal.style.display = 'none';
+            formEl.reset();
+            // Reset button
+            submitBtn.innerText = originalText;
+            submitBtn.style.backgroundColor = '';
+            submitBtn.style.color = '';
+            submitBtn.disabled = false;
+        }, 1000);
+    } else {
+        registerModal.style.display = 'none';
+        formEl.reset();
+    }
 });

@@ -56,6 +56,10 @@ logoutBtn.addEventListener('click', () => {
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    // UX ENHANCEMENT: Get the submit button to provide visual feedback during save
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn ? submitBtn.innerText : 'Submit';
+
     const newItem = {
         id: Date.now().toString(),
         title: document.getElementById('title').value,
@@ -73,9 +77,31 @@ form.addEventListener('submit', (e) => {
 
     data.push(newItem);
     localStorage.setItem('opportunities', JSON.stringify(data));
+
+    // UX ENHANCEMENT: Flash a green success message on the button instantly
+    if (submitBtn) {
+        submitBtn.innerText = '✓ Added Successfully!';
+        submitBtn.style.backgroundColor = '#28a745';
+        submitBtn.style.color = '#ffffff';
+        submitBtn.disabled = true;
+    }
+
+    // UX ENHANCEMENT: Pause briefly so user can see success feedback before closing the form
+    setTimeout(() => {
+        // Reset button back to normal
+        if (submitBtn) {
+            submitBtn.innerText = originalText;
+            submitBtn.style.backgroundColor = '';
+            submitBtn.style.color = '';
+            submitBtn.disabled = false;
+        }
+
     form.reset();
     formSection.classList.add('hidden');
     renderItems();
+    // UX ENHANCEMENT: Smoothly scroll down to focus on the newly added item card
+    itemsList.lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }, 800);
 });
 
 function renderItems() {
@@ -106,6 +132,10 @@ function deleteItem(id) {
     }
 }
 
+// UX ENHANCEMENT: Explicitly binds deleteItem to the window object. 
+// This guarantees the inline HTML `onclick` can always access it safely.
+window.deleteItem = deleteItem;
+
 // Submissions Rendering Logic
 function renderSubmissions() {
     const subs = JSON.parse(localStorage.getItem('submissions') || '[]');
@@ -114,8 +144,7 @@ function renderSubmissions() {
         submissionsList.innerHTML = '<div class="empty-message">No responses yet</div>';
         return;
     }
-
-    submissionsList.innerHTML = subs.reverse().map(sub => `
+    submissionsList.innerHTML = [...subs].reverse().map(sub => `
         <div class="submission-card ${sub.type.toLowerCase()}">
             <div class="sub-header">
                 <div>

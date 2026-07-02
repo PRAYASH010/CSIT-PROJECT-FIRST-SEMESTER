@@ -180,3 +180,79 @@
     background: #be185d;
     transform: translateY(-1px);
 }
+/* 1. Global Interactive Smoothing */
+.card, .apply-btn, .card-type, .freePayment, .paidPayment {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. Soft Tinted Background Glowing Effects on Hover */
+.card.scholarship:hover {
+    background: linear-gradient(to bottom right, var(--bg-card), rgba(59, 130, 246, 0.03));
+    box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.05);
+}
+
+.card.internship:hover {
+    background: linear-gradient(to bottom right, var(--bg-card), rgba(16, 185, 129, 0.03));
+    box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.1), 0 8px 10px -6px rgba(16, 185, 129, 0.05);
+}
+
+.card.event:hover {
+    background: linear-gradient(to bottom right, var(--bg-card), rgba(236, 72, 153, 0.03));
+    box-shadow: 0 20px 25px -5px rgba(236, 72, 153, 0.1), 0 8px 10px -6px rgba(236, 72, 153, 0.05);
+}
+
+/* 3. Sleek Accent Line indicator at the top of cards */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    opacity: 0.7;
+    transition: height 0.2s ease;
+}
+.card.scholarship::before { background: var(--color-scholarship); }
+.card.internship::before { background: var(--color-internship); }
+.card.event::before { background: var(--color-event); }
+
+/* Make the accent top line pop a bit more on hover */
+.card:hover::before {
+    height: 4px;
+    opacity: 1;
+}
+
+/* 4. Micro-interactions for Action Buttons */
+.apply-btn:active {
+    transform: scale(0.96) translateY(0px) !important;
+}
+
+.scholarship .apply-btn:hover {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.internship .apply-btn:hover {
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.event .apply-btn:hover {
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+/* 5. Modernize Meta Badges (Free/Paid) */
+.freePayment, .paidPayment {
+    font-size: 0.75rem;
+    letter-spacing: 0.2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 6. Grid Layout handling for the cards container */
+@media (min-width: 768px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+}
